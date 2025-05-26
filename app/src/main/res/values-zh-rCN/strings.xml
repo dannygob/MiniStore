@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">MiniStore</string>
+
+    <!-- General -->
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="search">搜索</string>
+    <string name="loading">加载中…</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">首页</string>
+    <string name="nav_products">商品</string>
+    <string name="nav_sales">销售</string>
+    <string name="nav_purchases">采购</string>
+    <string name="nav_clients">客户</string>
+    <string name="nav_providers">供应商</string>
+    <string name="nav_expenses">支出</string>
+    <string name="nav_reports">报表</string>
+    <string name="nav_settings">设置</string>
+
+    <!-- Products -->
+    <string name="product_name">商品名称</string>
+    <string name="product_price">价格</string>
+    <string name="product_stock">库存</string>
+    <string name="product_category">类别</string>
+    <string name="product_barcode">条形码</string>
+    <string name="add_product">添加商品</string>
+    <string name="edit_product">编辑商品</string>
+    <string name="delete_product">删除商品</string>
+
+    <!-- Sales -->
+    <string name="new_sale">新建销售</string>
+    <string name="sale_total">总计</string>
+    <string name="sale_date">日期</string>
+    <string name="sale_items">商品</string>
+    <string name="sale_payment">支付</string>
+    <string name="sale_receipt">收据</string>
+
+    <!-- Clients -->
+    <string name="client_name">客户名称</string>
+    <string name="client_phone">电话</string>
+    <string name="client_email">电子邮件</string>
+    <string name="client_address">地址</string>
+    <string name="add_client">添加客户</string>
+
+    <!-- Settings -->
+    <string name="settings_language">语言</string>
+    <string name="settings_currency">货币</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_notifications">通知</string>
+
+    <!-- Error Messages -->
+    <string name="error_generic">发生错误</string>
+    <string name="error_network">网络错误</string>
+    <string name="error_invalid_input">输入无效</string>
+    <string name="error_required_field">此字段为必填项</string>
+</resources> 

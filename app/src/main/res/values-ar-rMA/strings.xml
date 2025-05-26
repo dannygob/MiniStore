@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">MiniStore</string>
+
+    <!-- General -->
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+    <string name="save">حفظ</string>
+    <string name="delete">حذف</string>
+    <string name="edit">تعديل</string>
+    <string name="search">بحث</string>
+    <string name="loading">جاري التحميل…</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_products">المنتجات</string>
+    <string name="nav_sales">المبيعات</string>
+    <string name="nav_purchases">المشتريات</string>
+    <string name="nav_clients">العملاء</string>
+    <string name="nav_providers">الموردين</string>
+    <string name="nav_expenses">المصروفات</string>
+    <string name="nav_reports">التقارير</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <!-- Products -->
+    <string name="product_name">اسم المنتج</string>
+    <string name="product_price">السعر</string>
+    <string name="product_stock">المخزون</string>
+    <string name="product_category">الفئة</string>
+    <string name="product_barcode">الباركود</string>
+    <string name="add_product">إضافة منتج</string>
+    <string name="edit_product">تعديل المنتج</string>
+    <string name="delete_product">حذف المنتج</string>
+
+    <!-- Sales -->
+    <string name="new_sale">بيع جديد</string>
+    <string name="sale_total">المجموع</string>
+    <string name="sale_date">التاريخ</string>
+    <string name="sale_items">العناصر</string>
+    <string name="sale_payment">الدفع</string>
+    <string name="sale_receipt">الإيصال</string>
+
+    <!-- Clients -->
+    <string name="client_name">اسم العميل</string>
+    <string name="client_phone">الهاتف</string>
+    <string name="client_email">البريد الإلكتروني</string>
+    <string name="client_address">العنوان</string>
+    <string name="add_client">إضافة عميل</string>
+
+    <!-- Settings -->
+    <string name="settings_language">اللغة</string>
+    <string name="settings_currency">العملة</string>
+    <string name="settings_theme">المظهر</string>
+    <string name="settings_notifications">الإشعارات</string>
+
+    <!-- Error Messages -->
+    <string name="error_generic">حدث خطأ</string>
+    <string name="error_network">خطأ في الشبكة</string>
+    <string name="error_invalid_input">إدخال غير صالح</string>
+    <string name="error_required_field">هذا الحقل مطلوب</string>
+</resources> 

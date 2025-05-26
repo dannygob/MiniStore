@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">MiniStore</string>
+
+    <!-- General -->
+    <string name="ok">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="search">Buscar</string>
+    <string name="loading">Cargando…</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_products">Productos</string>
+    <string name="nav_sales">Ventas</string>
+    <string name="nav_purchases">Compras</string>
+    <string name="nav_clients">Clientes</string>
+    <string name="nav_providers">Proveedores</string>
+    <string name="nav_expenses">Gastos</string>
+    <string name="nav_reports">Informes</string>
+    <string name="nav_settings">Ajustes</string>
+
+    <!-- Products -->
+    <string name="product_name">Nombre del Producto</string>
+    <string name="product_price">Precio</string>
+    <string name="product_stock">Existencias</string>
+    <string name="product_category">Categoría</string>
+    <string name="product_barcode">Código de Barras</string>
+    <string name="add_product">Añadir Producto</string>
+    <string name="edit_product">Editar Producto</string>
+    <string name="delete_product">Eliminar Producto</string>
+
+    <!-- Sales -->
+    <string name="new_sale">Nueva Venta</string>
+    <string name="sale_total">Total</string>
+    <string name="sale_date">Fecha</string>
+    <string name="sale_items">Artículos</string>
+    <string name="sale_payment">Pago</string>
+    <string name="sale_receipt">Recibo</string>
+
+    <!-- Clients -->
+    <string name="client_name">Nombre del Cliente</string>
+    <string name="client_phone">Teléfono</string>
+    <string name="client_email">Correo Electrónico</string>
+    <string name="client_address">Dirección</string>
+    <string name="add_client">Añadir Cliente</string>
+
+    <!-- Settings -->
+    <string name="settings_language">Idioma</string>
+    <string name="settings_currency">Moneda</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_notifications">Notificaciones</string>
+
+    <!-- Error Messages -->
+    <string name="error_generic">Se ha producido un error</string>
+    <string name="error_network">Error de red</string>
+    <string name="error_invalid_input">Entrada no válida</string>
+    <string name="error_required_field">Este campo es obligatorio</string>
+</resources> 
