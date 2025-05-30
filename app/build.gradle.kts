@@ -1,10 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.hilt.android)
-    // Temporarily comment out for testing
-    // id("com.google.gms.google-services")
+    alias(libs.plugins.android - application)
+    alias(libs.plugins.kotlin - android)
+    alias(libs.plugins.hilt - android)
+    id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -38,11 +37,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
         languageVersion = "1.9"
     }
     buildFeatures {
@@ -63,6 +62,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+    implementation(featureXLibs.someLibrary)
+    implementation(libs.anotherLibrary)
+
     // Compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -82,13 +84,12 @@ dependencies {
     kapt(libs.room.compiler)
 
     // Temporarily comment out Firebase for testing
-    /*
-    // Firebase
+    Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.auth)
-    */
+
 
     // Retrofit & OkHttp
     implementation(libs.retrofit.core)
