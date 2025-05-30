@@ -3,34 +3,29 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.android)
-    // Temporarily comment out for testing
-    // id("com.google.gms.google-services")
+    alias(libs.plugins.google.services)
 }
 
 android {
-    namespace = "com.example.minstore"
+    namespace = "com.ministore"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.minstore"
+        applicationId = "com.ministore"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // Room schema location
-        kapt {
-            arguments {
-                arg("room.schemaLocation", "$projectDir/schemas")
-            }
+        vectorDrawables {
+            useSupportLibrary = true
         }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -43,13 +38,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
-        languageVersion = "1.9"
+        freeCompilerArgs += listOf("-Xjvm-default=all")
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = libs.versions.compose.get() // Should resolve to "1.4.3"
     }
     packaging {
         resources {
@@ -61,34 +56,42 @@ android {
 dependencies {
     // AndroidX Core
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx) // Version updated in toml
+    implementation(libs.androidx.activity.compose) // Version updated in toml
 
     // Compose
-    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.navigation.compose)
+    implementation(libs.androidx.material3) // Version specified in toml
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.navigation.compose) // Version updated in toml
+
 
     // Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    kapt(libs.hilt.compiler) // com.google.dagger:hilt-android-compiler
+    implementation(libs.hilt.navigation.compose)
+    kapt(libs.androidx.hilt.compiler) // androidx.hilt:hilt-compiler
 
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
 
-    // Temporarily comment out Firebase for testing
-    /*
     // Firebase
-    implementation(platform(libs.firebase.bom))
+    implementation(platform(libs.firebase.bom)) // Version updated in toml
+    implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.auth)
-    */
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     // Retrofit & OkHttp
     implementation(libs.retrofit.core)
@@ -101,8 +104,12 @@ dependencies {
     // DataStore
     implementation(libs.datastore.preferences)
 
-    // Barcode Scanner
-    implementation("com.google.zxing:core:3.5.2")
+    // Barcode Scanner / CameraX
+    implementation(libs.mlkit.barcode.scanning)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+
 
     // Accompanist
     implementation(libs.accompanist.permissions)
@@ -113,7 +120,15 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.ui.test.junit4) // Uses BOM
+    debugImplementation(libs.androidx.ui.tooling) // Uses BOM
+    debugImplementation(libs.androidx.ui.test.manifest) // Uses BOM
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 }
