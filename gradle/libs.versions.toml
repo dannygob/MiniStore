@@ -89,16 +89,3 @@ accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 [plugins]
-android.application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-libs.plugins.kotlin.android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-libs.plugins.kotlin.kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-libs.plugins.hilt.android = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
-libs.plugins.google.services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
-
-
-
-
-
-
-
-
