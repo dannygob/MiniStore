@@ -25,7 +25,7 @@ kotlinxCoroutinesPlayServices = "1.7.3"
 lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
 composeBom = "2025.05.01"
-hilt = "2.50"
+hilt = "2.48"
 navigationCompose = "2.9.0"
 room = "2.7.1"
 retrofit = "2.9.0"
@@ -36,6 +36,7 @@ roomCompiler = "2.7.1"
 zxing = "3.5.2"
 accompanist = "0.34.0"
 navigation = "2.9.0"
+
 
 [libraries]
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }  # 🔹 Corrección
@@ -88,8 +89,16 @@ accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+android.application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+libs.plugins.kotlin.android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+libs.plugins.kotlin.kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+libs.plugins.hilt.android = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
+libs.plugins.google.services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+
+
+
+
+
+
+
+
