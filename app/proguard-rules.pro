@@ -1,21 +1,108 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+#############################################
+# GENERAL REGLAS BÁSICAS PARA PROYECTOS ANDROID
+#############################################
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Mantener clases y miembros usados por Android framework
+-keepclassmembers class * {
+    public <init>(android.content.Context);
+}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Mantener clases de anotaciones
+-keepattributes *Annotation*
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+#############################################
+# HILT / DAGGER
+#############################################
+
+# Conservar clases y anotaciones de Hilt y Dagger
+-keep class dagger.hilt.** { *; }
+-keep class javax.inject.** { *; }
+-keep class dagger.** { *; }
+-keep class com.google.dagger.** { *; }
+-keep class * extends dagger.hilt.android.internal.lifecycle.HiltViewModelFactory { *; }
+
+# Evitar errores con clases generadas por Hilt
+-dontwarn dagger.hilt.internal.**
+-dontwarn javax.inject.**
+
+#############################################
+# ROOM
+#############################################
+
+# Conservar entidades y DAOs
+-keep class androidx.room.** { *; }
+-keepclassmembers class * {
+    @androidx.room.* <methods>;
+}
+
+-dontwarn androidx.room.paging.**
+
+#############################################
+# RETROFIT / OKHTTP / GSON
+#############################################
+
+# Mantener interfaces de Retrofit
+-keep interface retrofit2.** { *; }
+-keep class retrofit2.** { *; }
+
+# Gson: evitar eliminar campos serializados
+-keep class com.google.gson.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+
+# Si usas converters personalizados
+-keep class com.example.ministore.network.** { *; }
+
+#############################################
+# FIREBASE
+#############################################
+
+# Firebase base
+-keep class com.google.firebase.** { *; }
+-dontwarn com.google.firebase.**
+
+# Firestore
+-keep class com.google.firestore.** { *; }
+-dontwarn com.google.firestore.**
+
+#############################################
+# COIL (CARGA DE IMÁGENES)
+#############################################
+
+-keep class coil.** { *; }
+-dontwarn coil.**
+
+#############################################
+# ZXING (Código de barras)
+#############################################
+
+-keep class com.google.zxing.** { *; }
+-dontwarn com.google.zxing.**
+
+#############################################
+# COMPOSE
+#############################################
+
+# Compose necesita conservar metadata de anotaciones
+-keep class androidx.compose.** { *; }
+-keepclassmembers class * {
+    @androidx.compose.runtime.Composable <methods>;
+}
+
+#############################################
+# OTRAS UTILIDADES Y BUENAS PRÁCTICAS
+#############################################
+
+# Conservar lambdas
+-dontwarn kotlin.Metadata
+-keep class kotlin.Metadata { *; }
+
+# Evitar problemas con código generado
+-keepnames class * {
+    *;
+}
+
+# Evitar advertencias innecesarias
+-dontwarn org.jetbrains.annotations.**
+-dontwarn androidx.datastore.**
+-dontwarn kotlinx.coroutines.**
