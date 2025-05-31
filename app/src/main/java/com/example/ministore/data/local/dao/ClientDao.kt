@@ -1,4 +1,4 @@
-package com.example.minstore.data.local.dao
+package com.example.ministore.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -23,10 +23,10 @@ interface ClientDao {
     @Query("SELECT * FROM clients WHERE phone = :phone")
     suspend fun getClientByPhone(phone: String): ClientEntity?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertClient(client: ClientEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertClients(clients: List<ClientEntity>)
 
     @Update
@@ -44,4 +44,4 @@ interface ClientDao {
     """
     )
     fun searchClients(query: String): Flow<List<ClientEntity>>
-} 
+}

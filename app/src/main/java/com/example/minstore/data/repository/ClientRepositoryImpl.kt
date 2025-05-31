@@ -1,6 +1,6 @@
 package com.example.minstore.data.repository
 
-import com.example.minstore.data.local.dao.ClientDao
+import com.example.ministore.data.local.dao.ClientDao
 import com.example.minstore.data.local.entities.ClientEntity
 import com.example.minstore.domain.models.Address
 import com.example.minstore.domain.models.Client

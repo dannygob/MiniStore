@@ -2,8 +2,9 @@ package com.example.minstore.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.minstore.data.local.database.MiniStoreDatabase
+import com.example.ministore.data.local.dao.ClientDao
 import com.example.minstore.data.local.dao.*
+import com.example.minstore.data.local.database.MiniStoreDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

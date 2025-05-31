@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
+import com.example.ministore.data.local.dao.ClientDao
 import com.example.minstore.data.local.dao.*
 import com.example.minstore.data.local.entities.*
 import com.example.minstore.domain.models.*

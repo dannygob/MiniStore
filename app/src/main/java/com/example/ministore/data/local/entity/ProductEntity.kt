@@ -1,10 +1,11 @@
 package com.example.ministore.data.local.entity
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.Date
 
-@Entity(tableName = "products")
+@Entity(tableName = "products", indices = [Index(value = ["name"])])
 data class ProductEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
@@ -19,5 +20,5 @@ data class ProductEntity(
     val imageUrl: String?,
     val createdAt: Date = Date(),
     val updatedAt: Date = Date(),
-    val isDeleted: Boolean = false
-) 
+    val isDeleted: Boolean = false,
+)
