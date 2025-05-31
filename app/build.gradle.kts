@@ -1,13 +1,12 @@
 plugins {
-    alias(libs.plugins.android - application)
-    alias(libs.plugins.kotlin - android)
-    alias(libs.plugins.hilt - android)
-    id("com.android.application")
-    id("com.google.gms.google-services")
+    alias(libs.plugins.androidapplication)
+    alias(libs.plugins.kotlinandroid)
+    alias(libs.plugins.hiltandroid)
+    alias(libs.plugins.googleservices)
 }
 
 android {
-    namespace = "com.example.minstore"
+    namespace = "com.example.ministore"
     compileSdk = 34
 
     defaultConfig {
@@ -48,7 +47,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.6.6"
     }
     packaging {
         resources {
@@ -62,8 +61,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-    implementation(featureXLibs.someLibrary)
-    implementation(libs.anotherLibrary)
+    //implementation(featureXLibs.someLibrary)
+    //implementation(libs.anotherLibrary)
 
     // Compose
     implementation(libs.androidx.activity.compose)
@@ -84,7 +83,7 @@ dependencies {
     kapt(libs.room.compiler)
 
     // Temporarily comment out Firebase for testing
-    Firebase
+    //Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
