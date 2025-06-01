@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -79,7 +80,7 @@ dependencies {
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    kapt("androidx.room:room-compiler:2.7.1") // version from roomCompiler
+    ksp("androidx.room:room-compiler:2.7.1") // version from roomCompiler, switched to ksp
 
     // Firebase (uses BOM)
     implementation(libs.firebase.analytics)
@@ -101,7 +102,7 @@ dependencies {
     implementation(libs.coil.compose)
 
     // Testing
-    testImplementation(libs.junit) // version from junit
+    testImplementation("junit:junit:4.13.2") // Explicit version, libs.junit was unresolved
     androidTestImplementation("androidx.test.ext:junit:1.2.1") // version from androidxJunit / junitVersion
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1") // version from espressoCoreVersion
     androidTestImplementation("androidx.compose.ui:ui-test-junit4") // Uses Compose BOM
