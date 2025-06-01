@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.23-1.0.13"  // ksp plugin, compatible con kotlin 1.9.23
     id("com.google.gms.google-services")
     id("com.google.dagger.hilt.android") version "2.51.1"
+    id("androidx.compose.compiler") version "1.5.10"
 }
 
 android {

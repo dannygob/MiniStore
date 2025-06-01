@@ -1,6 +1,6 @@
 [versions]
 # Kotlin & Android
-kotlin = "1.9.23"
+kotlin = "2.0.21"
 android-gradle-plugin = "8.10.1"
 
 # Compose
@@ -70,6 +70,9 @@ hilt-dagger = { id = "com.google.dagger.hilt.android", version.ref = "google-ser
 
 # Firebase
 googleservices = { id = "com.google.gms.google-services", version.ref = "google-services" }
+
+# Compose Compiler
+compose-compiler = { id = "androidx.compose.compiler", version = "1.5.10" }
 
 [libraries]
 # Core Android
