@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.hilt - android)
     id("com.android.application")
     id("com.google.gms.google-services")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
