@@ -42,6 +42,15 @@ fun AddProductScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // TODO: Add input fields for new Product properties:
+            // - purchasePrice (TextField)
+            // - providerId (TextField or Dropdown)
+            // - location (e.g., TextFields for aisle, shelf, level)
+            // - minimumStock (TextField)
+            // - expirationDate (DatePicker)
+            // - Consider UI for image upload (e.g., a button to pick image, then display thumbnail).
+            // Ensure these new values are collected and passed to the
+            // ProductViewModel's addProduct method (which also needs updating).
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },

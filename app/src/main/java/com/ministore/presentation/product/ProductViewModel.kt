@@ -49,9 +49,13 @@ class ProductViewModel @Inject constructor(
         category: String = ""
     ) {
         viewModelScope.launch {
+            // TODO: Update addProduct method signature and Product instantiation below
+            // to include new fields: purchasePrice, providerId, location,
+            // minimumStock, expirationDate, imageUrl (imageUrl might be handled by a separate upload flow).
+            // Example: constructor might need product.copy(imageUrl = uploadedUrl) after image upload.
             val product = Product(
                 name = name,
-                price = price,
+                price = price, // This should be sellingPrice now based on domain model change
                 quantity = quantity,
                 barcode = barcode,
                 category = category

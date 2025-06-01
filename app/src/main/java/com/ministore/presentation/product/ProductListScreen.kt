@@ -110,6 +110,10 @@ private fun ProductItem(
                 .padding(16.dp)
                 .fillMaxWidth()
         ) {
+            // TODO: Enhance product display to include new fields from the Product model:
+            // - Display product.imageUrl (e.g., using Coil library).
+            // - Consider displaying purchasePrice, stock vs minimumStock, expirationDate, location
+            //   based on UI requirements.
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,

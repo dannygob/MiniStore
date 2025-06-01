@@ -57,6 +57,15 @@ fun EditProductScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // TODO: Add input fields to display and edit new Product properties:
+            // - purchasePrice
+            // - providerId
+            // - location (aisle, shelf, level)
+            // - minimumStock
+            // - expirationDate
+            // - imageUrl (display current image, allow changing/removing).
+            // Ensure these values are collected and used when updating the Product object
+            // which is then passed to ProductViewModel's updateProduct method.
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
