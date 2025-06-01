@@ -36,7 +36,7 @@ roomCompiler = "2.7.1"
 zxing = "3.5.2"
 accompanist = "0.34.0"
 navigation = "2.9.0"
-ksp = "1.9.23-1.0.19"
+ksp = "2.0.0-1.0.21" # New attempt for Kotlin 2.0.21 compatibility
 
 [libraries]
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }  # 🔹 Corrección
