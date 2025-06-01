@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
-    id 'com.google.devtools.ksp'    // KSP plugin
+    id 'com.google.devtools.ksp'
+    //id 'com.google.gms.google.services'
+    //id 'com.google.devtools.ksp'    // KSP plugin
     //id 'com.google.dagger.hilt.android' // Hilt plugin sin version aquí (version en libs.versions.toml)
 }
 
@@ -66,17 +67,17 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest"
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    ksp("com.google.dagger:hilt-compiler:2.51.1")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    ksp(libs.androidx.room.compiler)
     implementation("androidx.room:room-ktx:2.6.1")
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation(libs.firebase.bom.v3281)
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
