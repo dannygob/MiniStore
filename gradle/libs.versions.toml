@@ -20,6 +20,7 @@ barcodeScanning = "17.3.0"
 firebaseBom = "33.14.0"
 firebaseAnalytics = "21.3.0"
 firebaseBomVersion = "32.8.1"
+googleFirebaseBom = "32.7.0"
 googleServices = "4.4.2"
 gradle = "8.10.1"
 hilt = "2.50"
@@ -30,6 +31,7 @@ kotlin = "2.0.21"
 kotlinxCoroutinesAndroid = "1.7.3"
 kotlinxCoroutinesPlayServices = "1.7.3"
 lifecycleRuntimeKtx = "2.9.0"
+material3Version = "1.2.1"
 navigation = "2.9.0"
 navigationCompose = "2.9.0"
 room = "2.7.1"
@@ -59,6 +61,7 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "compose" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "composeMaterial3" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-material3-v121 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }
 
@@ -69,6 +72,7 @@ androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-bom-v3270 = { module = "com.google.firebase:firebase-bom", version.ref = "googleFirebaseBom" }
 firebase-bom-v3281 = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx", version = "24.7.1" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx", version = "22.1.1" }
