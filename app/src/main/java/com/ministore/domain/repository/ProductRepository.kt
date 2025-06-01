@@ -10,4 +10,12 @@ interface ProductRepository {
     suspend fun updateProduct(product: Product): Result<Unit>
     suspend fun deleteProduct(id: String): Result<Unit>
     suspend fun updateProductQuantity(id: String, newQuantity: Int): Result<Unit>
-} 
+
+    // New methods
+    fun getProductByBarcode(barcode: String): Flow<Product?>
+    fun getProductsByCategory(category: String): Flow<List<Product>>
+    fun searchProducts(query: String): Flow<List<Product>>
+    suspend fun uploadProductImage(productId: String, imageBytes: ByteArray): Result<String>
+    suspend fun deleteProductImage(imageUrl: String): Result<Unit>
+    suspend fun fetchProductDetailsFromApi(barcode: String): Result<Product?>
+}

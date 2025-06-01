@@ -85,6 +85,12 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.storage)
 
+    // Retrofit & Moshi (for OpenFoodFacts API)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.moshi.core)
+    ksp(libs.moshi.kotlin.codegen)
+
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3") // version from kotlinxCoroutinesAndroid
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3") // version from kotlinxCoroutinesPlayServices

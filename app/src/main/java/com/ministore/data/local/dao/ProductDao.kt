@@ -32,4 +32,13 @@ interface ProductDao {
 
     @Query("UPDATE products SET quantity = :newQuantity WHERE id = :productId")
     suspend fun updateProductQuantity(productId: String, newQuantity: Int)
-} 
+
+    @Query("SELECT * FROM products WHERE barcode = :barcode LIMIT 1")
+    fun getProductByBarcode(barcode: String): Flow<ProductEntity?>
+
+    @Query("SELECT * FROM products WHERE category = :category")
+    fun getProductsByCategory(category: String): Flow<List<ProductEntity>>
+
+    @Query("SELECT * FROM products WHERE name LIKE '%' || :query || '%' OR barcode LIKE '%' || :query || '%' OR category LIKE '%' || :query || '%'")
+    fun searchProducts(query: String): Flow<List<ProductEntity>>
+}
