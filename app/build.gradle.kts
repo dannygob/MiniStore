@@ -4,6 +4,12 @@ plugins {
     alias(libs.plugins.hilt - android)
     id("com.android.application")
     id("com.google.gms.google-services")
+    kotlin("kapt") version "2.0.0"
+    alias(libs.plugins.compose.compiler) apply false
+    id("com.android.application") version "8.2.2" apply false // Check for latest
+    id("org.jetbrains.kotlin.android") version "2.0.21" apply false // Check for latest
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21" // Or your specific Kotlin version
+
 }
 
 android {
@@ -50,7 +56,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
@@ -70,6 +76,19 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.navigation.compose)
+
+    val composeBom = platform("androidx.compose:compose-bom:2024.05.00") // Use the latest BOM version
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    // Your other Compose dependencies
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0" // Or your specific Kotlin version
+}
+
 
     // Hilt
     implementation(libs.hilt.android)
@@ -99,8 +118,24 @@ dependencies {
     // DataStore
     implementation(libs.datastore.preferences)
 
+    // Android Studio Preview support
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    // UI Tests
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    // Optional - Integration with activities
+    implementation("androidx.activity:activity-compose:1.9.0") // Use the latest version
+
+    // Optional - Integration with ViewModels
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0") // Use the latest version
+
     // Barcode Scanner
     implementation("com.google.zxing:core:3.5.2")
+    // Choose Material Design 3
+    implementation("androidx.compose.material3:material3")
+
 
     // Accompanist
     implementation(libs.accompanist.permissions)
@@ -114,4 +149,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.compose.compiler)
+    implementation 'androidx.compose.material3:material3'
+
 }
