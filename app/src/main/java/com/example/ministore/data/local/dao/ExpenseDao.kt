@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.ministore.data.local.entity.ExpenseEntity
-import com.example.ministore.domain.model.ExpenseCategory
+import com.example.minstore.domain.models.ExpenseCategory
 import kotlinx.coroutines.flow.Flow
 import java.util.Date
 

@@ -1,5 +1,6 @@
 package com.example.ministore.domain.model
 
+import com.example.minstore.domain.models.ExpenseCategory
 import java.util.Date
 import java.util.UUID
 

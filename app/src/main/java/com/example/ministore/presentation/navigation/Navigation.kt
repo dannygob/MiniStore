@@ -6,15 +6,15 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.ministore.presentation.screen.dashboard.DashboardScreen
-import com.example.ministore.presentation.screen.inventory.InventoryScreen
-import com.example.ministore.presentation.screen.sales.SalesScreen
-import com.example.ministore.presentation.screen.purchases.PurchasesScreen
-import com.example.ministore.presentation.screen.orders.OrdersScreen
 import com.example.ministore.presentation.screen.clients.ClientsScreen
+import com.example.ministore.presentation.screen.dashboard.DashboardScreen
+import com.example.ministore.presentation.screen.orders.OrdersScreen
 import com.example.ministore.presentation.screen.providers.ProvidersScreen
-import com.example.ministore.presentation.screen.reports.ReportsScreen
+import com.example.ministore.presentation.screen.purchases.PurchasesScreen
 import com.example.ministore.presentation.screen.settings.SettingsScreen
+import com.example.ministore.presentation.screens.inventory.InventoryScreen
+import com.example.ministore.presentation.screens.sales.SalesScreen
+import com.ministore.presentation.reports.ReportsScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -23,7 +23,7 @@ fun Navigation(navController: NavHostController) {
         startDestination = Screen.Dashboard.route
     ) {
         composable(Screen.Dashboard.route) {
-            DashboardScreen()
+            DashboardScreen(navController)
         }
 
         composable(Screen.Inventory.route) {

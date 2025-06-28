@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.ministore.data.local.converter.DateConverter
 import com.example.ministore.data.local.converter.PaymentMethodConverter
-import com.example.ministore.data.local.converter.PurchaseStatusConverter
 import com.example.ministore.domain.model.PaymentMethod
-import com.example.ministore.domain.model.PurchaseStatus
+import com.example.minstore.domain.models.PurchaseStatus
 import java.util.Date
 
 @Entity(tableName = "purchases")

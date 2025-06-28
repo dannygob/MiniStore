@@ -1,13 +1,11 @@
 package com.example.ministore.data.repository
 
 import com.example.ministore.data.local.dao.PurchaseDao
-import com.example.ministore.data.local.entity.PurchaseEntity
-import com.example.ministore.data.local.entity.PurchaseItemEntity
 import com.example.ministore.data.mapper.toDomain
 import com.example.ministore.data.mapper.toEntity
 import com.example.ministore.domain.model.Purchase
 import com.example.ministore.domain.model.PurchaseItem
-import com.example.ministore.domain.model.PurchaseStatus
+import com.example.minstore.domain.models.PurchaseStatus
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.flow.Flow

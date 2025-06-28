@@ -1,5 +1,6 @@
 package com.example.ministore.domain.model
 
+import com.example.minstore.domain.models.Address
 import java.util.UUID
 
 data class Provider(

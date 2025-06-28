@@ -1,5 +1,7 @@
 package com.example.ministore.domain.model
 
+import com.example.minstore.domain.models.OrderStatus
+import com.google.mlkit.vision.barcode.common.Barcode.Address
 import java.util.Date
 import java.util.UUID
 

@@ -3,7 +3,8 @@ package com.example.ministore.data.local.entity
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.ministore.domain.model.Address
+import com.example.minstore.domain.models.Address
+
 
 @Entity(tableName = "providers")
 data class ProviderEntity(

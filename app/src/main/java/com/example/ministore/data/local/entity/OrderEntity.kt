@@ -5,11 +5,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.ministore.data.local.converter.DateConverter
-import com.example.ministore.data.local.converter.OrderStatusConverter
+
 import com.example.ministore.data.local.converter.PaymentMethodConverter
-import com.example.ministore.domain.model.Address
-import com.example.ministore.domain.model.OrderStatus
+
 import com.example.ministore.domain.model.PaymentMethod
+import com.example.minstore.domain.models.Address
+import com.example.minstore.domain.models.OrderStatus
 import java.util.Date
 
 @Entity(tableName = "orders")

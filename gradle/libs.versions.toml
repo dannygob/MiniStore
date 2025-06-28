@@ -41,6 +41,9 @@ roomCompiler = "2.7.1"
 zxing = "3.5.2"
 accompanist = "0.34.0"
 ksp = "2.0.21-1.0.27"
+firebaseFirestoreKtx = "25.1.4"
+firebaseStorageKtx = "21.0.2"
+material3Jvmstubs = "1.4.0-alpha16"
 
 [libraries]
 # Android Core
@@ -104,6 +107,9 @@ hilt-android-compiler = { group = 'com.google.dagger', name = 'hilt-compiler', v
 
 # Navigation
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebaseStorageKtx" }
+androidx-material3-jvmstubs = { group = "androidx.compose.material3", name = "material3-jvmstubs", version.ref = "material3Jvmstubs" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

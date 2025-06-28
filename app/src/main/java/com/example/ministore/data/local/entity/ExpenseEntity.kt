@@ -7,9 +7,9 @@ import com.example.ministore.data.local.converter.DateConverter
 import com.example.ministore.data.local.converter.ExpenseCategoryConverter
 import com.example.ministore.data.local.converter.PaymentMethodConverter
 import com.example.ministore.data.local.converter.RecurringPeriodConverter
-import com.example.ministore.domain.model.ExpenseCategory
 import com.example.ministore.domain.model.PaymentMethod
 import com.example.ministore.domain.model.RecurringPeriod
+import com.example.minstore.domain.models.ExpenseCategory
 import java.util.Date
 
 @Entity(tableName = "expenses")

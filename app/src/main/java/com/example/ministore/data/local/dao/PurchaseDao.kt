@@ -9,7 +9,7 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.example.ministore.data.local.entity.PurchaseEntity
 import com.example.ministore.data.local.entity.PurchaseItemEntity
-import com.example.ministore.domain.model.PurchaseStatus
+import com.example.minstore.domain.models.PurchaseStatus
 import kotlinx.coroutines.flow.Flow
 import java.util.Date
 
