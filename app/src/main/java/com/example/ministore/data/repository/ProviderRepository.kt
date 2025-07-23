@@ -1,10 +1,16 @@
 package com.example.ministore.data.repository
 
+import android.content.Context
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.example.ministore.data.local.SyncProviderWorker
 import com.example.ministore.data.local.dao.ProviderDao
 import com.example.ministore.data.mapper.toDomain
 import com.example.ministore.data.mapper.toEntity
 import com.example.ministore.domain.model.Provider
 import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
@@ -14,7 +20,8 @@ import javax.inject.Singleton
 @Singleton
 class ProviderRepository @Inject constructor(
     private val providerDao: ProviderDao,
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+    @ApplicationContext private val context: Context
 ) {
     private val providersCollection = firestore.collection("providers")
 
@@ -24,8 +31,15 @@ class ProviderRepository @Inject constructor(
         // Save to local database
         providerDao.insertProvider(providerEntity)
 
-        // Save to Firestore
-        providersCollection.document(provider.id).set(provider).await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("provider_id", provider.id)
+            .putString("action", "insert")
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncProviderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun updateProvider(provider: Provider) {
@@ -34,8 +48,15 @@ class ProviderRepository @Inject constructor(
         // Update local database
         providerDao.updateProvider(providerEntity)
 
-        // Update Firestore
-        providersCollection.document(provider.id).set(provider).await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("provider_id", provider.id)
+            .putString("action", "update")
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncProviderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun deleteProvider(provider: Provider) {
@@ -44,8 +65,15 @@ class ProviderRepository @Inject constructor(
         // Delete from local database
         providerDao.deleteProvider(providerEntity)
 
-        // Delete from Firestore
-        providersCollection.document(provider.id).delete().await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("provider_id", provider.id)
+            .putString("action", "delete")
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncProviderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     fun getProviderById(id: String): Flow<Provider?> {
@@ -74,10 +102,15 @@ class ProviderRepository @Inject constructor(
         // Update local database
         providerDao.updateProviderActiveStatus(providerId, isActive)
 
-        // Update Firestore
-        providersCollection.document(providerId)
-            .update("isActive", isActive)
-            .await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("provider_id", providerId)
+            .putString("action", "update") // We can potentially add a specific action for status update if needed
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncProviderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun syncWithFirestore() {

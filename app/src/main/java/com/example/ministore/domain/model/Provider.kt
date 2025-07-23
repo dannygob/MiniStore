@@ -1,6 +1,6 @@
 package com.example.ministore.domain.model
 
-import com.example.minstore.domain.models.Address
+import com.example.ministore.domain.model.Address
 import java.util.UUID
 
 data class Provider(
@@ -13,4 +13,4 @@ data class Provider(
     val taxId: String? = null,
     val notes: String? = null,
     val isActive: Boolean = true
-) 
+)

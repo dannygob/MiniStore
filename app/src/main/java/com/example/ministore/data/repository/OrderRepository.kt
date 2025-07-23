@@ -1,5 +1,10 @@
 package com.example.ministore.data.repository
 
+import android.content.Context
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.example.ministore.data.local.SyncOrderWorker
 import com.example.ministore.data.local.dao.OrderDao
 import com.example.ministore.data.local.entity.OrderEntity
 import com.example.ministore.data.local.entity.OrderItemEntity
@@ -9,6 +14,7 @@ import com.example.ministore.domain.model.Order
 import com.example.ministore.domain.model.OrderItem
 import com.example.ministore.domain.model.OrderStatus
 import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
@@ -19,7 +25,8 @@ import javax.inject.Singleton
 @Singleton
 class OrderRepository @Inject constructor(
     private val orderDao: OrderDao,
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+    @ApplicationContext private val context: Context
 ) {
     private val ordersCollection = firestore.collection("orders")
     private val orderItemsCollection = firestore.collection("order_items")
@@ -31,11 +38,15 @@ class OrderRepository @Inject constructor(
         // Save to local database
         orderDao.insertOrderWithItems(orderEntity, itemEntities)
 
-        // Save to Firestore
-        ordersCollection.document(order.id).set(order).await()
-        items.forEach { item ->
-            orderItemsCollection.document().set(item).await()
-        }
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("order_id", order.id)
+            .putString("action", "insert")
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncOrderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun updateOrder(order: Order) {
@@ -44,8 +55,15 @@ class OrderRepository @Inject constructor(
         // Update local database
         orderDao.updateOrder(orderEntity)
 
-        // Update Firestore
-        ordersCollection.document(order.id).set(order).await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("order_id", order.id)
+            .putString("action", "update")
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncOrderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun deleteOrder(order: Order) {
@@ -54,14 +72,15 @@ class OrderRepository @Inject constructor(
         // Delete from local database
         orderDao.deleteOrderWithItems(orderEntity)
 
-        // Delete from Firestore
-        ordersCollection.document(order.id).delete().await()
-        orderItemsCollection
-            .whereEqualTo("orderId", order.id)
-            .get()
-            .await()
-            .documents
-            .forEach { doc -> doc.reference.delete().await() }
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("order_id", order.id)
+            .putString("action", "delete")
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncOrderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     fun getOrderById(id: String): Flow<Order?> {
@@ -92,7 +111,7 @@ class OrderRepository @Inject constructor(
                 val items = orderDao.getOrderItemsByOrderId(order.id).map { itemEntities ->
                     itemEntities.map { it.toDomain() }
                 }
-                order.toDomain(items)
+                order.toDomain(items)e
             }
         }
     }
@@ -123,20 +142,30 @@ class OrderRepository @Inject constructor(
         // Update local database
         orderDao.updateOrderStatus(orderId, status)
 
-        // Update Firestore
-        ordersCollection.document(orderId)
-            .update("status", status)
-            .await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("order_id", orderId)
+            .putString("action", "update") // We can potentially add a specific action for status update if needed
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncOrderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun updateDeliveryDate(orderId: String, deliveryDate: Date) {
         // Update local database
         orderDao.updateDeliveryDate(orderId, deliveryDate)
 
-        // Update Firestore
-        ordersCollection.document(orderId)
-            .update("deliveryDate", deliveryDate)
-            .await()
+        // Enqueue WorkManager task to sync with Firestore
+        val data = Data.Builder()
+            .putString("order_id", orderId)
+            .putString("action", "update") // We can potentially add a specific action for delivery date update if needed
+            .build()
+        val syncWorkRequest = OneTimeWorkRequestBuilder<SyncOrderWorker>()
+            .setInputData(data)
+            .build()
+        WorkManager.getInstance(context).enqueue(syncWorkRequest)
     }
 
     suspend fun syncWithFirestore() {
