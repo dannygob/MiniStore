@@ -2,8 +2,8 @@ pluginManagement {
     repositories {
         google {
             content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("com\.android.*")
+                includeGroupByRegex("com\.google.*")
                 includeGroupByRegex("androidx.*")
             }
         }
@@ -18,8 +18,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven(url = "https://plugins.gradle.org/m2/")
+        maven(url = "https://jitpack.io") // Added from settings.gradle
     }
 }
 
-rootProject.name = "MinStore"
+rootProject.name = "MiniStore" // Harmonized project name
 include(":app")

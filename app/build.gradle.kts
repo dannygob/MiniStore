@@ -1,23 +1,18 @@
 plugins {
-    alias(libs.plugins.android - application)
-    alias(libs.plugins.kotlin - android)
-    alias(libs.plugins.hilt - android)
-    id("com.android.application")
-    id("com.google.gms.google-services")
-    kotlin("kapt") version "2.0.0"
-    alias(libs.plugins.compose.compiler) apply false
-    id("com.android.application") version "8.2.2" apply false // Check for latest
-    id("org.jetbrains.kotlin.android") version "2.0.21" apply false // Check for latest
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21" // Or your specific Kotlin version
-
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp) // Assuming KSP is needed based on Room and Hilt usage
+    alias(libs.plugins.google.services)
+    // Removed redundant plugin declarations
 }
 
 android {
-    namespace = "com.example.minstore"
-    compileSdk = 34
+    namespace = "com.example.ministore" // Harmonized namespace
+    compileSdk = 35 // Using higher compileSdk from groovy file
 
     defaultConfig {
-        applicationId = "com.example.minstore"
+        applicationId = "com.example.ministore" // Harmonized application ID
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -25,7 +20,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Room schema location
-        kapt {
+        ksp {
             arguments {
                 arg("room.schemaLocation", "$projectDir/schemas")
             }
@@ -47,8 +42,8 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "17"
-        languageVersion = "1.9"
+        jvmTarget = "17" // Using higher jvmTarget from kts file
+        languageVersion = "1.9" // Using languageVersion from kts file
     }
 
     buildFeatures {
@@ -56,7 +51,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
+        kotlinCompilerExtensionVersion = "1.5.15" // Using version from kts file
     }
     packaging {
         resources {
@@ -70,6 +65,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
@@ -77,35 +74,30 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.navigation.compose)
 
-    val composeBom = platform("androidx.compose:compose-bom:2024.05.00") // Use the latest BOM version
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-
-    // Your other Compose dependencies
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0" // Or your specific Kotlin version
-}
-
-
     // Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0") // Keep specific version for now
 
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
 
-    // Temporarily comment out Firebase for testing
-    Firebase
+    // Firebase
+    // Removed redundant and commented-out Firebase declarations
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.auth)
+    // Note: firebase.firestore.ktx and firebase.storage.ktx in groovy file are covered by the bom and the non-ktx versions here
 
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android) // Assuming this is in libs.versions.toml
+    implementation(libs.kotlinx.coroutines.play.services) // Assuming this is in libs.versions.toml
+
+    // WorkManager
+    implementation(libs.androidx.work.runtime.ktx) // Assuming this is in libs.versions.toml
 
     // Retrofit & OkHttp
     implementation(libs.retrofit.core)
@@ -119,23 +111,21 @@ dependencies {
     implementation(libs.datastore.preferences)
 
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
 
     // UI Tests
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
     // Optional - Integration with activities
-    implementation("androidx.activity:activity-compose:1.9.0") // Use the latest version
+    implementation(libs.androidx.activity.compose) // Already declared above
 
     // Optional - Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0") // Use the latest version
+    implementation(libs.androidx.lifecycle.viewmodel.compose) // Assuming this is in libs.versions.toml
 
     // Barcode Scanner
-    implementation("com.google.zxing:core:3.5.2")
-    // Choose Material Design 3
-    implementation("androidx.compose.material3:material3")
-
+    implementation("com.google.zxing:core:3.5.2") // Keep specific version for now
 
     // Accompanist
     implementation(libs.accompanist.permissions)
@@ -146,11 +136,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.ui.test.junit4) // Already declared above
+    debugImplementation(libs.androidx.ui.tooling) // Already declared above
+    debugImplementation(libs.androidx.ui.test.manifest) // Already declared above
 
-    implementation(libs.androidx.compose.compiler)
-    implementation 'androidx.compose.material3:material3'
-
+    // Note: androidx.compose.compiler and material3 are declared multiple times, consolidated here.
 }

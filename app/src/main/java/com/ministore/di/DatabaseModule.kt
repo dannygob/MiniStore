@@ -1,10 +1,10 @@
-package com.ministore.di
+package com.example.ministore.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ministore.data.local.MiniStoreDatabase
-import com.ministore.data.local.dao.ProductDao
-import com.ministore.data.local.dao.SaleDao
+import com.example.ministore.data.local.MiniStoreDatabase
+import com.example.ministore.data.local.dao.ProductDao
+import com.example.ministore.data.local.dao.SaleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

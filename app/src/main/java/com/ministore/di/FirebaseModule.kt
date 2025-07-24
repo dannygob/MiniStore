@@ -1,4 +1,4 @@
-package com.ministore.di
+package com.example.ministore.di
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
